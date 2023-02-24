@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}{% load extras %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Primary Meta Tags -->
+    <title>{% block title %}Washingdone - It's Just Done{% endblock title %} | Washingdone - It's Just Done</title>
+    <meta name="title" content="Washingdone - It's Just Done">
+    <meta name="description" content="Washingdone offers a range of premium quality products thoroughly tested to satisfy the needs of car detailing enthusiasts, as well as the exacting requirements of professionals.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://www.washingdone.com/">
+    <meta property="og:title" content="Washingdone - It's Just Done">
+    <meta property="og:description" content="Washingdone offers a range of premium quality products thoroughly tested to satisfy the needs of car detailing enthusiasts, as well as the exacting requirements of professionals.">
+    <meta property="og:image" content="https://i.ibb.co/Xb7g9R5/product.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="http://www.washingdone.com/">
+    <meta property="twitter:title" content="Washingdone - It's Just Done">
+    <meta property="twitter:description" content="Washingdone offers a range of premium quality products thoroughly tested to satisfy the needs of car detailing enthusiasts, as well as the exacting requirements of professionals.">
+    <meta property="twitter:image" content="https://i.ibb.co/Xb7g9R5/product.png">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'web/img/favicon/apple-icon-57x57.png' %}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'web/img/favicon/apple-icon-60x60.png' %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'web/img/favicon/apple-icon-72x72.png' %}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'web/img/favicon/apple-icon-76x76.png' %}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'web/img/favicon/apple-icon-114x114.png' %}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'web/img/favicon/apple-icon-120x120.png' %}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'web/img/favicon/apple-icon-144x144.png' %}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'web/img/favicon/apple-icon-152x152.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'web/img/favicon/apple-icon-180x180.png' %}">
+    <link rel="icon" type="image/png" sizes="192x192"  href="{% static 'web/img/favicon/android-icon-192x192.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'web/img/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'web/img/favicon/favicon-96x96.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'web/img/favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'web/img/favicon/manifest.json' %}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="{% static 'web/img/favicon/ms-icon-144x144.png' %}">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/combine/npm/slick-carousel@1.8.1/slick/slick.min.css,npm/slick-carousel@1.8.1/slick/slick-theme.min.css" />
+    <link rel="stylesheet" media="screen" href="{% static 'web/css/style.css' %}">
+    <link rel="stylesheet" media="screen" href="{% static 'web/css/responsive.css' %}">
+</head>
+
+<body>
+
+    {% block content %}
+    {% endblock content %}
+
+    <footer>
+        <div class="footer-top">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div class="col-md-4 mt-4 mt-md-0">
+                        <div class="footer-logo-container">
+                            <img src="{% static 'web/img/footer-logo.svg' %}" alt="">
+                        </div>
+                        <div class="footer-description">
+                            <p>
+                                {{about.summary|slice:"220"}} ...
+                            </p>
+                            <b>opening hours</b>
+                            <p>{{about.working_hours}}</p>
+                            <p>Sunday is closed</p>
+                        </div>
+                    </div>
+                    <div class="col-md-2 mt-4 mt-md-0">
+                        <div class="footer-header">
+                            <h4>Quick Links</h4>
+                        </div>
+                        <ul class="link-list">
+                            <li><span class="icon"></span><a href="{% url 'app:cart' %}">Your Cart</a></li>
+                            <li><span class="icon"></span><a href="{% url 'app:orders' %}">Your Orders</a></li>
+                            <li><span class="icon"></span><a href="{% url 'app:search' %}">Product Search</a></li>
+                            {% for page in pages %}
+                            <li><span class="icon"></span><a href="{% url 'web:page' page.slug %}">{{page.title}}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="col-md-4 mt-4 mt-md-0">
+                        <div class="footer-header">
+                            <h4>contact us</h4>
+                        </div>
+                        <ul class="address-list">
+                            {% if about.address %}<li><i class="icon icon-location"></i><address>{{about.address|linebreaks}}</address></li>{% endif %}
+                            {% if about.phone %}<li class="phone"><i class="icon icon-phone"></i><a href="#">Phone: {{about.phone}}</a></li>{% endif %}
+                            {% if about.email %}<li class="email"><i class="icon icon-mail"></i><a href="#">Email: {{about.email}}</a></li>{% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom justify-content-between">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div class="col-md-3">
+                        <p class="copyright">copyright <strong>&copy; gedexo 2021</strong></p>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="social-medias">
+                            {% for social in socials %}<li><a href="{{social.link}}" target="_blank">{{social.media}}</a></li>{% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="floating-cart">
+        {% if order_items %}
+        <div class="cart-display d-none">
+            <div class="cart-item-wrapper">
+                {% for item in order_items %}
+                <div class="single-cart-item">
+                    <div class="cart-img">
+                        <a href="{% url 'app:product' item.unit.product.slug %}" class="cart_img"><img src="{{item.unit.product.photo.crop.60x60}}" alt=""></a>
+                    </div>
+                    <div class="cart-text-btn">
+                        <div class="cart-text">
+                            <h5><a href="{% url 'app:product' item.unit.product.slug %}">{{item.unit.product.title}}</a></h5>
+                            <p class="cart-qty">₹ {{item.unit.product.price}} × {{item.quantity}}</p>
+                            <p class="cart-price">₹ {{item.subtotal}}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+                <div class="cart-price-total">
+                    <div class="cart-price-info d-flex justify-content-between">
+                        <span>Total :</span>
+                        <span>₹ {{session_user_total}}</span>
+                    </div>
+                </div>
+                <div class="cart-links">
+                    <a href="{% url 'app:cart' %}">View cart</a>
+                    <a href="{% url 'app:checkout' %}">Checkout</a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        <button type="button" class="cart-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="#fdc101" width="30" viewBox="0 0 511.997 511.997"><path d="M405.387 362.612c-35.202 0-63.84 28.639-63.84 63.84s28.639 63.84 63.84 63.84 63.84-28.639 63.84-63.84-28.639-63.84-63.84-63.84zm0 89.376c-14.083 0-25.536-11.453-25.536-25.536s11.453-25.536 25.536-25.536c14.083 0 25.536 11.453 25.536 25.536s-11.453 25.536-25.536 25.536zM507.927 115.875a19.128 19.128 0 00-15.079-7.348H118.22l-17.237-72.12a19.16 19.16 0 00-18.629-14.702H19.152C8.574 21.704 0 30.278 0 40.856s8.574 19.152 19.152 19.152h48.085l62.244 260.443a19.153 19.153 0 0018.629 14.702h298.135c8.804 0 16.477-6.001 18.59-14.543l46.604-188.329a19.185 19.185 0 00-3.512-16.406zM431.261 296.85H163.227l-35.853-150.019h341.003L431.261 296.85zM173.646 362.612c-35.202 0-63.84 28.639-63.84 63.84s28.639 63.84 63.84 63.84 63.84-28.639 63.84-63.84-28.639-63.84-63.84-63.84zm0 89.376c-14.083 0-25.536-11.453-25.536-25.536s11.453-25.536 25.536-25.536 25.536 11.453 25.536 25.536-11.453 25.536-25.536 25.536z"></path></svg>
+        </button>
+    </div>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.15.3/dist/sweetalert2.all.min.js"></script>
+    <script src="{% static 'web/js/app.js' %}"></script>
+    <script type="text/javascript">
+    $(".cart-icon").click(function(){
+        $(".cart-display").toggleClass("d-none");
+    });
+    </script>
+    {% block javascript %}{% endblock %}
+</body>
+
+</html>

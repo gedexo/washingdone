@@ -1,0 +1,33 @@
+{% extends 'web/base.html' %}
+{% load static %}{% load extras %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<section class="hero-section">
+    <div class="main-hero">
+        <div class="hero-bg" style="background: url({% static 'web/img/category.webp' %});">
+            <div class="wrapper">
+                <div class="container">
+                    {% include 'web/partials/header.html' %}
+                    <div class="hero-container row justify-content-between align-items-center">
+                        <div class="col-md-6 hero-text-container">
+                            <h1>About Us</h1>
+                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatem eos ea, cum quae facilis optio impedit tempora aliquam at eveniet?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="page container-fluid">
+    <h6 class="section-subheading">the story of a new millennium</h6>
+    <h2 class="section-heading">ABOUT WASHINGDONE</h2>
+    <div class="container mt-5">
+        {{about.description|safe}}
+    </div>
+
+</section>
+
+{% endblock %}

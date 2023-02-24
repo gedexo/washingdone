@@ -1,0 +1,87 @@
+{% extends 'web/base.html' %}
+{% load static %}{% load extras %}
+{% block title %}Your Cart{% endblock %}
+
+{% block content %}
+<section class="hero-section">
+    <div class="main-hero">
+        <div class="hero-bg" style="background: url({% static 'web/img/category.webp' %});">
+            <div class="wrapper">
+                <div class="container">
+                    {% include 'web/partials/header.html' %}
+                    <div class="hero-container row justify-content-between align-items-center">
+                        <div class="col-md-6 hero-text-container">
+                            <h1>Your Cart</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="page container-fluid">
+    {% if order_items %}
+    <div class="cart-area table-area pt-110 pb-95">
+        <div class="container">
+            <div class="table-responsive">
+                <table class="table product-table text-center">
+                    <thead>
+                        <tr>
+                            <th class="table-remove">remove</th>
+                            <th class="table-image">image</th>
+                            <th class="table-p-name">product</th>
+                            <th class="table-p-price">price</th>
+                            <th class="table-p-qty">quantity</th>
+                            <th class="table-total">total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in order_items %}
+                        <tr>
+                            <td class="table-remove"><button data-url="{% url 'app:delete_from_cart' pk=item.pk %}" class="p-cart-btn">
+                                delete
+                            </button></td>
+                            <td class="table-image"><a href="{% url 'app:product' item.unit.product.slug %}"><img src="{{item.unit.product.photo.crop.60x60}}" alt=""></a></td>
+                            <td class="table-p-name"><a href="{% url 'app:product' item.unit.product.slug %}">{{item.unit.product}}</a></td>
+                            <td class="table-p-price"><p>₹ {{item.unit.product.price}}</p></td>
+                            <td class="table-p-qty">
+                                <div class="d-flex justify-content-center">
+                                    <input value="{{item.quantity}}" name="cart-qty" min="0" type="number" disabled>
+                                    <div class="update_cart_container d-flex flex-column justify-content-center">
+                                        <div class="quantity-button quantity-up ajax_button" data-url="{% url 'app:increase_qty' pk=item.pk %}" data-id="{{item.product.pk}}">+</div>
+                                        <div class="quantity-button quantity-down ajax_button" data-url="{% url 'app:decrease_qty' pk=item.pk %}" data-id="{{item.product.pk}}">-</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="table-total"><p>₹ {{item.subtotal}}</p></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <div class="container">
+            <div class="table-total-wrapper d-flex justify-content-end pt-60">
+                <div class="table-total-content">
+                    <h2>Cart Total</h2>
+                    <div class="table-total-amount">
+                        <div class="single-total-content d-flex justify-content-between">
+                            <span>Total</span>
+                            <span class="c-total-price">₹ {{session_user_total}}</span>
+                        </div>
+                        <a href="{% url 'app:checkout' %}">Proceed to checkout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="container">
+        <h2>Cart Empty</h2>
+    </div>
+    {% endif %}
+</section>
+
+{% endblock %}

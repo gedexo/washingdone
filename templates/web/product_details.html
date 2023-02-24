@@ -1,0 +1,85 @@
+{% extends 'web/base.html' %}
+{% load static %}{% load extras %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+    <section class="hero-section">
+        <div class="main-hero">
+            <div class="hero-bg" style="min-height: unset;">
+                <div class="wrapper">
+                    <div class="container">
+                        {% include 'web/partials/header.html' %}
+                    </div>
+                </div>
+            </div
+        </div>
+    </section>
+
+    <section class="product_single">
+        <div class="product-detials-area bg-gray">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5 col-md-5">
+                        <div class="product-image-slider d-flex flex-column">
+                            <div class="tab-content product-large-image-list">
+                                <div class="tab-pane fade show active" id="product-slide1" role="tabpanel" aria-labelledby="product-slide-tab-1">
+                                    <div class="single-product-img easyzoom img-full is-ready">
+                                        <a href="{% static 'web/img/product.webp' %}">
+                                            <img src="{{instance.photo.url}}" class="img-fluid" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-7 pt-2">
+                        <div class="product-details-text">
+                            <h3 class="mb-3">{{instance.title}}</h3>
+                            <h6 class="mb-4">{{instance.subtitle}}</h6>
+                            <div class="p-rating-review">
+                                <div class="product-rating">
+                                    <i class="star"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.002 512.002"><path d="M511.267 197.258a14.995 14.995 0 00-12.107-10.209l-158.723-23.065-70.985-143.827a14.998 14.998 0 00-26.901 0l-70.988 143.827-158.72 23.065a14.998 14.998 0 00-8.312 25.585l114.848 111.954-27.108 158.083a14.999 14.999 0 0021.763 15.812l141.967-74.638 141.961 74.637a15 15 0 0021.766-15.813l-27.117-158.081 114.861-111.955a14.994 14.994 0 003.795-15.375z"/></svg></i>
+                                    <i class="star"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.002 512.002"><path d="M511.267 197.258a14.995 14.995 0 00-12.107-10.209l-158.723-23.065-70.985-143.827a14.998 14.998 0 00-26.901 0l-70.988 143.827-158.72 23.065a14.998 14.998 0 00-8.312 25.585l114.848 111.954-27.108 158.083a14.999 14.999 0 0021.763 15.812l141.967-74.638 141.961 74.637a15 15 0 0021.766-15.813l-27.117-158.081 114.861-111.955a14.994 14.994 0 003.795-15.375z"/></svg></i>
+                                    <i class="star"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.002 512.002"><path d="M511.267 197.258a14.995 14.995 0 00-12.107-10.209l-158.723-23.065-70.985-143.827a14.998 14.998 0 00-26.901 0l-70.988 143.827-158.72 23.065a14.998 14.998 0 00-8.312 25.585l114.848 111.954-27.108 158.083a14.999 14.999 0 0021.763 15.812l141.967-74.638 141.961 74.637a15 15 0 0021.766-15.813l-27.117-158.081 114.861-111.955a14.994 14.994 0 003.795-15.375z"/></svg></i>
+                                    <i class="star"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.002 512.002"><path d="M511.267 197.258a14.995 14.995 0 00-12.107-10.209l-158.723-23.065-70.985-143.827a14.998 14.998 0 00-26.901 0l-70.988 143.827-158.72 23.065a14.998 14.998 0 00-8.312 25.585l114.848 111.954-27.108 158.083a14.999 14.999 0 0021.763 15.812l141.967-74.638 141.961 74.637a15 15 0 0021.766-15.813l-27.117-158.081 114.861-111.955a14.994 14.994 0 003.795-15.375z"/></svg></i>
+                                    <i class="star"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.002 512.002"><path d="M511.267 197.258a14.995 14.995 0 00-12.107-10.209l-158.723-23.065-70.985-143.827a14.998 14.998 0 00-26.901 0l-70.988 143.827-158.72 23.065a14.998 14.998 0 00-8.312 25.585l114.848 111.954-27.108 158.083a14.999 14.999 0 0021.763 15.812l141.967-74.638 141.961 74.637a15 15 0 0021.766-15.813l-27.117-158.081 114.861-111.955a14.994 14.994 0 003.795-15.375z"/></svg></i>
+                                </div>
+                                <a href="#" class="scroll-down">(0 customer reviews)</a>
+                            </div>
+                            <h4>&#8377; {{instance.price}}<span>&#8377; {{instance.mrp}}</span></h4>
+                            <form action="{% url 'app:add_to_cart' pk=instance.pk %}" method="post" class="ajax reload">
+                                {% csrf_token %}
+
+                                <div class="swatch_options">
+                                    <p>Select Size</p>
+                                    {{add_to_cart_form.unit}}
+                                </div>
+                                <div class="add-cart-product">
+                                    <p>Select quantity</p>
+                                    <div class="quantity quantity-nav">
+                                        <div class="quantity quantity-nav">
+                                            {{add_to_cart_form.quantity}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="add-cart-product">
+                                    <button type="submit" class="default-btn">Add to trunk</button>
+                                </div>
+                            </form>
+
+                            <p>{{instance.description}}</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="product_more pt-5">
+            {% if instance.banner1 %}<div class="board"><img src="{{instance.banner1.url}" alt=""></div>{% endif %}
+            {% if instance.banner2 %}<div class="board"><img src="{{instance.banner2.url}" alt=""></div>{% endif %}
+            {% if instance.banner3 %}<div class="board"><img src="{{instance.banner3.url}" alt=""></div>{% endif %}
+        </div>
+    </section>
+
+    {% endblock %}

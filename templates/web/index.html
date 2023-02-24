@@ -1,0 +1,417 @@
+{% extends 'web/base.html' %}
+{% load static %}{% load extras %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<section class="hero-section">
+    <div id="particles-js"></div>
+    <div class="main-hero">
+        <div class="hero-bg hvh">
+            <div class="wrapper">
+                <div class="container">
+                    {% include 'web/partials/header.html' %}
+
+                    <div class="hero-container row justify-content-between align-items-center">
+                        <div class="col-md-5">
+                            <div class="hexagon">
+                                <img src="{% static 'web/img/hexagon.png' %}" alt="">
+                            </div>
+                        </div>
+                        <div class="col-md-6 hero-text-container">
+                            <h1>get the latest polishing product at a fair prices</h1>
+                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatem eos ea, cum quae facilis optio impedit tempora aliquam at eveniet?</p>
+                            <div class="mt-5">
+                                <a href="{% url 'app:products' %}" class="arrow-btn">find our products</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- overview section starts -->
+
+<section class="overview container-fluid">
+    <div class="row">
+        {% for banner in banners %}
+        <div class="col-md-4 overview-bg">
+            <div class="overview-icon-box">
+                <span class="icon">
+                    {{banner.icon|safe}}
+                </span>
+            </div>
+            <h3 class="overview-head">{{banner.title}}</h3>
+            <p class="overview-description">{{banner.subtitle}} </p>
+            <a href="{% url 'app:products' %}" class="arrow-btn">find our products</a>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- overview section ends -->
+<!-- products section starts -->
+
+<section class="products container-fluid">
+    <h6 class="section-subheading">latest moving items</h6>
+    <h2 class="section-heading">newly listed products</h2>
+    <p class="section-description">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad similique unde excepturi placeat inventore in commodi.
+        Eligendi ea debitis dicta sequi quod assumenda quibusdam, quia, odio in, soluta cum sapiente.
+    </p>
+    <div class="products-carousel row align-items-end">
+
+        <div class="col-md-4">
+            <div class="slider slider-for">
+                {% for deal in deals %}
+                <div class="product-card" data-date="{{deal.available_upto|date:'F d, Y H:i:s'}}" style="background-image: url({{deal.product.photo.url}});">
+                    <div class="main-text">
+                        <div class="d-flex justify-content-between">
+                            <div class="product-detail">
+                                <h3 class="product-name">{{deal.product.title}}</h3>
+                                <h4 class="product-price">&#8377; {{deal.special_price}}</h4>
+                            </div>
+                            <div class="deal-part">
+                                <div class="clockdiv">
+                                    <div>
+                                        <span class="days"></span>
+                                        <div class="smalltext">days</div>
+                                    </div>
+                                    <div>
+                                        <span class="hours"></span>
+                                        <div class="smalltext">hours</div>
+                                    </div>
+                                    <div>
+                                        <span class="minutes"></span>
+                                        <div class="smalltext">minutes</div>
+                                    </div>
+                                    <div>
+                                        <span class="seconds"></span>:
+                                        <div class="smalltext">seconds</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="slider slider-nav">
+                {% for deal in deals %}
+                <div class="product-card" data-date="{{deal.available_upto|date:'F d, Y H:i:s'}}" style="background-image: url({{deal.product.photo.url}});">
+                    <div class="main-text">
+                        <div class="d-flex justify-content-between">
+                            <div class="product-detail">
+                                <h3 class="product-name">{{deal.product.title}}</h3>
+                                <h4 class="product-price">&#8377; {{deal.special_price}}</h4>
+                            </div>
+                            <div class="deal-part">
+                                <div class="clockdiv absolute-clock">
+                                    <div>
+                                        <span class="days"></span>
+                                        <div class="smalltext">days</div>
+                                    </div>
+                                    <div>
+                                        <span class="hours"></span>
+                                        <div class="smalltext">hours</div>
+                                    </div>
+                                    <div>
+                                        <span class="minutes"></span>
+                                        <div class="smalltext">minutes</div>
+                                    </div>
+                                    <div>
+                                        <span class="seconds"></span>:
+                                        <div class="smalltext">seconds</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="clients container-fluid">
+    <div class="row">
+
+        <div class="col-md-6 p-0">
+            <div class="clients-bg-left">
+                <span class="stars"></span>
+                <h3 class="clients-head">limited time offer</h3>
+                <p class="clients-description">Lorem ipsum dolor sit amet, consectetur </p>
+            </div>
+        </div>
+
+        <div class="col-md-6 p-0">
+            <div class="clients-bg-right">
+                <h6 class="clients-subheading">Car interiror</h6>
+                <h3 class="clients-heading"><strong>125</strong>k+ Car interiror</h3>
+                <p class="clients-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique soluta doloribus perferendis quasi ea quos, quae neque dignissimos, distinctio suscipit saepe mollitia possimus. Iure adipisci id
+                    voluptatem, sequi aspernatur tempora.</p>
+
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <div class="toggle" id="dropdown-detail-1" data-toggle="detail-1">
+                            <div class="parallelogram">
+                                <span class="number">01</span>Lorem ipsum dolor sit amet.
+                            </div>
+                        </div>
+                        <div id="detail-1">
+                            <div class="text-container">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus culpa, cum earum necessitatibus repellendus sapiente quia labore officia, ab non amet! Commodi ea unde qui cupiditate placeat eaque, error nam.
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="toggle" id="dropdown-detail-2" data-toggle="detail-2">
+                            <div class="parallelogram">
+                                <span class="number">01</span>Lorem ipsum dolor sit amet.
+                            </div>
+                        </div>
+                        <div id="detail-2">
+                            <div class="text-container">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus culpa, cum earum necessitatibus repellendus sapiente quia labore officia, ab non amet! Commodi ea unde qui cupiditate placeat eaque, error nam.
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="toggle" id="dropdown-detail-3" data-toggle="detail-3">
+                            <div class="parallelogram">
+                                <span class="number">01</span>Lorem ipsum dolor sit amet.
+                            </div>
+                        </div>
+                        <div id="detail-3">
+                            <div class="text-container">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus culpa, cum earum necessitatibus repellendus sapiente quia labore officia, ab non amet! Commodi ea unde qui cupiditate placeat eaque, error nam.
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="offers container">
+    <h6 class="section-subheading">latest moving items</h6>
+    <h2 class="section-heading">newly listed products</h2>
+    <p class="offers-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique soluta doloribus perferendis quasi ea quos, quae neque dignissimos, distinctio suscipit saepe mollitia possimus. Iure adipisci id voluptatem,
+        sequi aspernatur tempora.</p>
+
+    <div class="text-center filter-container">
+        <button class="btn btn-default filter-button" data-filter="all">All</button>
+        {% for category in categories %}
+        <button class="btn btn-default filter-button" data-filter="{{category.title|slugify}}">{{category.title}}</button>
+        {% endfor %}
+
+    </div>
+    <div class="row justify-content-around">
+        <div class="col-md-12 p-0 col-sm-12">
+            <div class="row">
+                {% for product in products %}
+                <div class="gallery_product mx-5 mx-md-0 col-lg-3 col-md-4 col-sm-6 filter {{product.category.title|slugify}}">
+                    <div class="card">
+                        <img src="{{product.photo.url}}" class="img-responsive">
+                        <div class="card-footer d-flex align-items-center justify-content-between">
+                            <div class="left w-90">
+                                <p>{{product.subtitle}}</p>
+                                <h6>{{product.title}}</h6>
+                            </div>
+                            <div class="right w-10">
+                                <button type="button" class="cart-icon p-cart-btn" data-url="{% url 'app:add_single_to_cart' product.pk %}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="#fdc101" width="20" viewBox="0 0 511.997 511.997"><path d="M405.387 362.612c-35.202 0-63.84 28.639-63.84 63.84s28.639 63.84 63.84 63.84 63.84-28.639 63.84-63.84-28.639-63.84-63.84-63.84zm0 89.376c-14.083 0-25.536-11.453-25.536-25.536s11.453-25.536 25.536-25.536c14.083 0 25.536 11.453 25.536 25.536s-11.453 25.536-25.536 25.536zM507.927 115.875a19.128 19.128 0 00-15.079-7.348H118.22l-17.237-72.12a19.16 19.16 0 00-18.629-14.702H19.152C8.574 21.704 0 30.278 0 40.856s8.574 19.152 19.152 19.152h48.085l62.244 260.443a19.153 19.153 0 0018.629 14.702h298.135c8.804 0 16.477-6.001 18.59-14.543l46.604-188.329a19.185 19.185 0 00-3.512-16.406zM431.261 296.85H163.227l-35.853-150.019h341.003L431.261 296.85zM173.646 362.612c-35.202 0-63.84 28.639-63.84 63.84s28.639 63.84 63.84 63.84 63.84-28.639 63.84-63.84-28.639-63.84-63.84-63.84zm0 89.376c-14.083 0-25.536-11.453-25.536-25.536s11.453-25.536 25.536-25.536 25.536 11.453 25.536 25.536-11.453 25.536-25.536 25.536z"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<section class="showcase container-fluid px-0">
+    <div class="review-container">
+        <span class="review-icon">icon</span>
+        <p class="review-text">
+            We are the largest website that deals with <strong>all kind polish products </strong>and sparys, Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+        </p>
+        <p class="review-by">Lorem ipsum <strong>dolor.</strong></p>
+    </div>
+    <div class="clients-showcase">
+        <div class="clients-showcase-item"><img src="{% static 'web/img/client.png' %}" alt="" /></div>
+        <div class="clients-showcase-item"><img src="{% static 'web/img/client.png' %}" alt="" /></div>
+        <div class="clients-showcase-item"><img src="{% static 'web/img/client.png' %}" alt="" /></div>
+        <div class="clients-showcase-item d-none d-md-block">
+            <div class="showcase-image-container">
+                <img src="{% static 'web/img/car.png' %}" alt="" class="showcase-image">
+            </div>
+        </div>
+        <div class="clients-showcase-item"><img src="{% static 'web/img/client.png' %}" alt="" /></div>
+        <div class="clients-showcase-item"><img src="{% static 'web/img/client.png' %}" alt="" /></div>
+        <div class="clients-showcase-item"><img src="{% static 'web/img/client.png' %}" alt="" /></div>
+    </div>
+
+</section>
+
+<section class="news container">
+    <h6 class="section-subheading">Car interiror</h6>
+    <h3 class="section-heading">Car interiror</h3>
+    <p class="news-description">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique soluta doloribus perferendis quasi ea quos, quae neque dignissimos, distinctio suscipit saepe mollitia possimus. Iure adipisci id voluptatem,
+        sequi aspernatur tempora.
+    </p>
+    <div class="news-box-container">
+        {% for blog in blogs %}
+        <div class="news-box">
+            <div class="news-img-container">
+                <a href="{% url 'web:blog' blog.slug %}"><img src="{{blog.photo.url}}" alt="" class="news-img"></a>
+                <span class="news-category">{{blog.category.title}}</span>
+            </div>
+            <div class="news-body">
+                <div class="news-subheading">
+                    <p>{{blog.date}}</p>
+                </div>
+                <h3><a href="{% url 'web:blog' blog.slug %}">{{blog.title}}</a></h3>
+                <p class="news-summary">{{blog.summary}}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock %}
+
+{% block javascript %}
+<script src="{% static 'web/js/particles.min.js' %}"></script>
+<script>
+    $(document).ready(function() {
+        $('[id^=detail-]').hide();
+        $('.toggle').click(function() {
+            $input = $(this);
+            $target = $('#' + $input.attr('data-toggle'));
+            $target.slideToggle();
+        });
+    });
+
+    particlesJS("particles-js", {
+        particles: {
+            number: {
+                value: 80,
+                density: {
+                    enable: !0,
+                    value_area: 800
+                }
+            },
+            color: {
+                value: "#ffffff"
+            },
+            shape: {
+                type: "circle",
+                stroke: {
+                    width: 0,
+                    color: "#000000"
+                },
+                polygon: {
+                    nb_sides: 5
+                }
+            },
+            opacity: {
+                value: .5,
+                random: !1,
+                anim: {
+                    enable: !1,
+                    speed: 1,
+                    opacity_min: .1,
+                    sync: !1
+                }
+            },
+            size: {
+                value: 5,
+                random: !0,
+                anim: {
+                    enable: !1,
+                    speed: 40,
+                    size_min: .1,
+                    sync: !1
+                }
+            },
+            line_linked: {
+                enable: !0,
+                distance: 150,
+                color: "#ffffff",
+                opacity: .4,
+                width: 1
+            },
+            move: {
+                enable: !0,
+                speed: 6,
+                direction: "none",
+                random: !1,
+                straight: !1,
+                out_mode: "out",
+                attract: {
+                    enable: !1,
+                    rotateX: 600,
+                    rotateY: 1200
+                }
+            }
+        },
+        interactivity: {
+            detect_on: "canvas",
+            events: {
+                onhover: {
+                    enable: !0,
+                    mode: "repulse"
+                },
+                resize: !0
+            },
+            modes: {
+                grab: {
+                    distance: 400,
+                    line_linked: {
+                        opacity: 1
+                    }
+                },
+                bubble: {
+                    distance: 400,
+                    size: 40,
+                    duration: 2,
+                    opacity: 8,
+                    speed: 3
+                },
+                repulse: {
+                    distance: 200
+                },
+                remove: {
+                    particles_nb: 2
+                }
+            }
+        },
+        retina_detect: !0,
+        config_demo: {
+            hide_card: !1,
+            background_color: "#000",
+            background_image: "",
+            background_position: "50% 50%",
+            background_repeat: "no-repeat",
+            background_size: "cover"
+        }
+    });
+</script>
+{% endblock %}

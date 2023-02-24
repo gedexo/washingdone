@@ -1,0 +1,64 @@
+{% extends 'web/base.html' %}
+{% load static %}{% load extras %}
+{% block title %}Search{% endblock %}
+
+{% block content %}
+<section class="hero-section">
+    <div class="main-hero">
+        <div class="hero-bg" style="background: url({% static 'web/img/category.webp' %});">
+            <div class="wrapper">
+                <div class="container">
+                    {% include 'web/partials/header.html' %}
+                    <div class="hero-container row justify-content-between align-items-center">
+                        <div class="col-md-6 hero-text-container">
+                            <h1>Search</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="product_list">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="category_info">
+                    <form action="" method="get" class="search_form d-flex w-100">
+                        <input type="text" name="q" value="" class="form-control form-control-lg" placeholder="Search for Products">
+                        <button type="submit" name="button" class="btn btn-primary ml-3">Search</button>
+                    </form>
+                    <hr>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {% for i in instance %}
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 link" data-url="{% url 'app:product' i.slug %}">
+                <div class="product_img">
+                    <img src="{{i.photo.url}}" alt="">
+                </div>
+                <div class="product-details">
+                    <div class="options">
+                        <span class="styles">More sizes</span>
+                        <span class="metafield">{{i.category.title}}</span>
+                    </div>
+                    <p class="title" itemprop="name">{{i.title}}</p>
+
+                    <div class="price sale">
+                        <p class="starting">starting at</p>
+                        <span class="was_price">
+                            <span class="money old-price">{{i.mrp}}</span>
+                            <span class="money">{{i.price}}</span>
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

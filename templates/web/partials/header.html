@@ -1,0 +1,15 @@
+{% load static %}
+<div class="header">
+    <div class="left">
+        <h1><a href="/"><img src="{% static 'web/img/footer-logo.svg' %}" alt=""></a></h1>
+    </div>
+    <div class="right">
+        <ul class="navigation">
+            <li><a href="/">home</a></li>
+            <li><a href="{% url 'web:about' %}">about</a></li>
+            <li><a href="{% url 'app:products' %}">products</a></li>
+            <li><a href="{% url 'web:about' %}">services</a></li>
+            <li><a href="{% url 'web:contact' %}">contact</a></li>
+        </ul>
+    </div>
+</div>

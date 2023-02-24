@@ -1,0 +1,39 @@
+{% extends 'web/base.html' %}
+{% load static %}{% load extras %}
+{% block title %}{{blog.title}}{% endblock %}
+
+{% block content %}
+<section class="hero-section">
+    <div class="main-hero">
+        <div class="hero-bg" style="background: url({% static 'web/img/category.webp' %});">
+            <div class="wrapper">
+                <div class="container">
+                    {% include 'web/partials/header.html' %}
+                    <div class="hero-container row justify-content-between align-items-center">
+                        <div class="col-md-6 hero-text-container">
+                            <h1>{{blog.title}}</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="page container-fluid">
+    <h2 class="section-heading">{{blog.title}}</h2>
+    <div class="container mt-5">
+        <div class="news-img-container">
+            <img src="{{blog.photo.url}}" alt="" class="news-img w-100">
+            <div class="news-subheading">
+                <p>{{blog.date}}</p>
+            </div>
+        </div>
+        <div class="news-body mt-5">
+            {{blog.content|safe}}
+        </div>
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'web/base.html' %}
+{% load static %}{% load extras %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+    <section class="hero-section">
+        <div class="main-hero">
+            <div class="hero-bg" style="background: url({% static 'web/img/category.webp' %});">
+                <div class="wrapper">
+                    <div class="container">
+                        {% include 'web/partials/header.html' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="product_list">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="category_info">
+                        <h6><a href="/">home</a> / <a href="">category name</a></h6>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {% for i in 5|times %}
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 link" data-url="{% url 'web:index' %}">
+                    <div class="product_img">
+                        <img src="{% static 'web/img/product.webp' %}" alt="">
+                    </div>
+                    <div class="product-details">
+                        <div class="options">
+                            <span class="styles">More sizes</span>
+                            <span class="metafield">Introductory Pricing</span>
+                        </div>
+                        <p class="title" itemprop="name">Graphene Ceramic Coating™</p>
+
+                        <div class="price sale">
+                            <p class="starting">starting at</p>
+                            <span class="was_price">
+                                <span class="money old-price">$72.99</span>
+                                <span class="money">$79.99</span>
+                            </span>
+                        </div>
+
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+
+    {% endblock %}
